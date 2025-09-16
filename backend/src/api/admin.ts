@@ -50,7 +50,7 @@ router.get('/recordings', async (req: Request, res: Response) => {
             const { data: signedUrl } = await supabase.storage
               .from('recordings')
               .createSignedUrl(recording.file_path, 3600)
-            recording.file_path = signedUrl.signedUrl
+            recording.file_path = signedUrl?.signedUrl || recording.file_path
           } catch (urlError) {
             console.error('Error generating signed URL:', urlError)
           }
@@ -59,10 +59,10 @@ router.get('/recordings', async (req: Request, res: Response) => {
       })
     )
 
-    res.json({ recordings: recordingsWithUrls })
+    return res.json({ recordings: recordingsWithUrls })
   } catch (error) {
     console.error('Admin recordings error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -79,10 +79,10 @@ router.get('/users', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to fetch users' })
     }
 
-    res.json({ users: users || [] })
+    return res.json({ users: users || [] })
   } catch (error) {
     console.error('Admin users error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -99,10 +99,10 @@ router.get('/customers', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to fetch customers' })
     }
 
-    res.json({ customers: customers || [] })
+    return res.json({ customers: customers || [] })
   } catch (error) {
     console.error('Admin customers error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -140,7 +140,7 @@ router.get('/stats', async (req: Request, res: Response) => {
 
     const totalStorageBytes = segments?.reduce((sum, segment) => sum + (segment.size_bytes || 0), 0) || 0
 
-    res.json({
+    return res.json({
       totalRecordings: totalRecordings || 0,
       totalUsers: totalUsers || 0,
       totalCustomers: totalCustomers || 0,
@@ -149,7 +149,7 @@ router.get('/stats', async (req: Request, res: Response) => {
     })
   } catch (error) {
     console.error('Admin stats error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 

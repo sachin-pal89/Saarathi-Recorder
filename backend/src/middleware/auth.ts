@@ -61,10 +61,10 @@ export const authMiddleware = async (
       role: userData?.role || 'user'
     }
 
-    next()
+    return next()
   } catch (error) {
     console.error('Auth middleware error:', error)
-    res.status(401).json({ error: 'Authentication failed' })
+    return res.status(401).json({ error: 'Authentication failed' })
   }
 }
 
@@ -76,5 +76,5 @@ export const requireAdmin = (
   if (!req.user || req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Admin access required' })
   }
-  next()
+  return next()
 }

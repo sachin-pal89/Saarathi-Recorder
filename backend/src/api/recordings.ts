@@ -43,10 +43,10 @@ router.post('/', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to create recording' })
     }
 
-    res.json({ recording_id: recording.id })
+    return res.json({ recording_id: recording.id })
   } catch (error) {
     console.error('Create recording error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -101,13 +101,13 @@ router.post('/:id/segments', upload.single('segment'), async (req: Request, res:
       return res.status(500).json({ error: 'Failed to save segment metadata' })
     }
 
-    res.json({
+    return res.json({
       segment_id: segment.id,
       file_path: filePath
     })
   } catch (error) {
     console.error('Upload segment error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -167,10 +167,10 @@ router.post('/:id/finalize', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to update recording' })
     }
 
-    res.json({ file_path: finalPath })
+    return res.json({ file_path: finalPath })
   } catch (error) {
     console.error('Finalize recording error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -231,10 +231,10 @@ router.get('/', async (req: Request, res: Response) => {
       })
     )
 
-    res.json({ recordings: recordingsWithUrls })
+    return res.json({ recordings: recordingsWithUrls })
   } catch (error) {
     console.error('Recordings list error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -280,10 +280,10 @@ router.get('/:id', async (req: Request, res: Response) => {
       }
     }
 
-    res.json(recording)
+    return res.json(recording)
   } catch (error) {
     console.error('Recording details error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -358,7 +358,7 @@ router.get('/debug/:id', async (req: Request, res: Response) => {
 
   } catch (error) {
     console.error('Debug endpoint error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 

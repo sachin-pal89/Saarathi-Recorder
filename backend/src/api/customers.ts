@@ -33,7 +33,7 @@ router.get('/', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to fetch customers' })
     }
 
-    res.json({
+    return res.json({
       customers: customers || [],
       total: count || 0,
       page: pageNum,
@@ -41,7 +41,7 @@ router.get('/', async (req: Request, res: Response) => {
     })
   } catch (error) {
     console.error('Customers list error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -64,10 +64,10 @@ router.get('/:id', async (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Failed to fetch customer' })
     }
 
-    res.json(customer)
+    return res.json(customer)
   } catch (error) {
     console.error('Customer details error:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 })
 
