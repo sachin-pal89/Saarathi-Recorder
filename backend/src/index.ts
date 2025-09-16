@@ -3,11 +3,11 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
-import { authMiddleware } from './middleware/auth.js'
-import { errorMiddleware } from './middleware/error.js'
-import { customersRouter } from './api/customers.js'
-import { recordingsRouter } from './api/recordings.js'
-import { adminRouter } from './api/admin.js'
+import { authMiddleware } from './middleware/auth'
+import { errorMiddleware } from './middleware/error'
+import { customersRouter } from './api/customers'
+import { recordingsRouter } from './api/recordings'
+import { adminRouter } from './api/admin'
 
 // Load environment variables
 dotenv.config()

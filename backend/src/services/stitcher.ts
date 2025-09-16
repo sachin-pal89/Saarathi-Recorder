@@ -1,6 +1,6 @@
 import ffmpeg from 'fluent-ffmpeg'
 import { Readable } from 'stream'
-import { supabase, uploadToStorage } from './supabase.js'
+import { supabase, uploadToStorage } from './supabase'
 
 interface Segment {
   id: string

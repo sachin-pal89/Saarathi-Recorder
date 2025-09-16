@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express'
 import multer from 'multer'
-import { supabase, uploadToStorage, getRecordingPath, getSegmentPath, getSignedUrl } from '../services/supabase.js'
-import { stitchSegments } from '../services/stitcher.js'
+import { supabase, uploadToStorage, getRecordingPath, getSegmentPath, getSignedUrl } from '../services/supabase'
+import { stitchSegments } from '../services/stitcher'
 
 const router = Router()
 
