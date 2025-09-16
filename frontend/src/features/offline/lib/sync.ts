@@ -1,6 +1,5 @@
 import { offlineQueue } from './idb-queue'
 import { recordingsApi } from '../../../services/api'
-import { useDispatch } from 'react-redux'
 import type { AppDispatch } from '../../../store'
 import { setSyncing, setLastSyncTime, removeFromQueue, incrementRetryCount } from '../store/networkSlice'
 

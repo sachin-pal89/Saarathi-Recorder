@@ -135,7 +135,7 @@ const recorderSlice = createSlice({
       }
     },
     
-    resetRecorder: (state) => {
+    resetRecorder: () => {
       return { ...initialState }
     },
     

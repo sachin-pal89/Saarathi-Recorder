@@ -13,7 +13,6 @@ import {
   resumeRecording,
   stopRecording,
   addSegment,
-  updateDuration,
   resetRecorder
 } from '../store/recorderSlice'
 import { recordingsApi } from '../../../services/api'
@@ -21,7 +20,7 @@ import { useMimeSupport } from './useMimeSupport'
 
 export const useRecorder = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const { status, mediaRecorder, mediaStream, currentRecordingId, segments } = useSelector(
+  const { status, mediaRecorder, mediaStream, segments } = useSelector(
     (state: RootState) => state.recorder
   )
   const { getSupportedMimeType } = useMimeSupport()

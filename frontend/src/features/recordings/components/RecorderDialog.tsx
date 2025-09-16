@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Mic, MicOff, Play, Pause, Square, X, Loader2 } from 'lucide-react'
+import { Mic, Play, Pause, Square, X, Loader2 } from 'lucide-react'
 import type { RootState, AppDispatch } from '../../../store'
 import type { Customer } from '../../customers/store/customersSlice'
 import { 
@@ -14,7 +14,6 @@ import { Button } from '../../../components/ui/button'
 import { useRecorder } from '../hooks/useRecorder'
 import { useWakeLock } from '../hooks/useWakeLock'
 import { recordingsApi } from '../../../services/api'
-import { addRecording } from '../store/recordingsSlice'
 import { updateDuration } from '../store/recorderSlice'
 import { useToast } from '../../../hooks/use-toast'
 
@@ -26,7 +25,7 @@ interface RecorderDialogProps {
 export const RecorderDialog: React.FC<RecorderDialogProps> = ({ customer, onClose }) => {
   const dispatch = useDispatch<AppDispatch>()
   const { toast } = useToast()
-  const { status, duration, error, mediaStream } = useSelector((state: RootState) => state.recorder)
+  const { status, duration, error } = useSelector((state: RootState) => state.recorder)
   
   const [purpose, setPurpose] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
